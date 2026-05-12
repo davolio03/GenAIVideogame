@@ -11,6 +11,15 @@ Desde la carpeta del proyecto:
 cd "C:\Users\David\Documentos\Máster\Seminarios\S16 INTELIGENCIA ARTIFICIAL GENERATIVA Y PROMPT ENGINEERING APLICACIONES Y RETOS\GenAIVideogame"
 ```
 
+O ejecutá el script de setup:
+
+```powershell
+.\setup.ps1
+```
+
+Ese script crea `.venv`, verifica que estés usando Python `3.10` e instala
+`requirements.txt`.
+
 Instalá las dependencias:
 
 ```powershell
