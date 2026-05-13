@@ -1,0 +1,217 @@
+{
+  "intro": "Te das cuenta de que la noche en la mansión ha terminado en tragedia. La marquesa Isolda yace sin vida y los sospechosos rondan los pasillos. Tu misión es descubrir al culpable, el arma y el lugar del crimen antes de que el asesino escape.",
+  "habitaciones": [
+    {
+      "nombre": "Biblioteca",
+      "descripcion": "Sala de libros, luz tenue, escritorio de roble.",
+      "cuerpo": null,
+      "objetos": [
+        {
+          "nombre": "Almohada",
+          "descripcion": "Sobre la silla, ligera mancha gris y pequeña marca de metal."
+        },
+        {
+          "nombre": "Pistola",
+          "descripcion": "En la mesa, cañón oxidado, falta el gatillo."
+        }
+      ]
+    },
+    {
+      "nombre": "Cocina",
+      "descripcion": "Habitación amplia con aromas a especias, mesa de cocina y un trofeo bajo la luz.",
+      "cuerpo": null,
+      "objetos": [
+        {
+          "nombre": "Trofeo",
+          "descripcion": "Brillante, con una pequeña marca de polvo, parece haber sido movido recientemente."
+        }
+      ]
+    },
+    {
+      "nombre": "Habitacion de sirvientes",
+      "descripcion": "Una habitación austera con paredes de piedra y pocos muebles, iluminada por la luz tenue de una ventana alta.",
+      "cuerpo": "La Marquesa yace en el suelo, con una herida en la cabeza que sugiere un golpe contundente.",
+      "objetos": [
+        {
+          "nombre": "Maceta",
+          "descripcion": "Maceta de barro con tierra húmeda, sin signos de haber sido movida recientemente."
+        },
+        {
+          "nombre": "Puno americano",
+          "descripcion": "Objeto metálico con forma de puño, cubierto de arañazos y manchas oscuras."
+        },
+        {
+          "nombre": "Bate de beisbol",
+          "descripcion": "Bate de madera con polvo y marcas de uso, apoyado contra la pared."
+        },
+        {
+          "nombre": "Martillo",
+          "descripcion": "Martillo de acero con manchas rojizas que podrían ser sangre, descansando sobre una mesa."
+        }
+      ]
+    },
+    {
+      "nombre": "Habitacion principal",
+      "descripcion": "Una habitación amplia con muebles de estilo clásico, una ventana que da al jardín y una puerta que lleva al pasillo.",
+      "cuerpo": null,
+      "objetos": [
+        {
+          "nombre": "Manguera",
+          "descripcion": "Una manguera de jardín enrollada, parece haber sido usada recientemente para reparar una fuga, pero no muestra señales de uso esta noche."
+        },
+        {
+          "nombre": "Cizalla",
+          "descripcion": "Un par de cizallas de metal sobre la mesa, ligeramente oxidadas, con una pequeña mancha que podría ser polvo o algo más."
+        }
+      ]
+    },
+    {
+      "nombre": "Jardin",
+      "descripcion": "Jardín iluminado, fuente murmura, flores perfumadas.",
+      "cuerpo": null,
+      "objetos": [
+        {
+          "nombre": "Abre cartas",
+          "descripcion": "Cartas abiertas, polvo, una hoja faltante sugiere mensaje oculto."
+        }
+      ]
+    },
+    {
+      "nombre": "Piscina",
+      "descripcion": "La zona de la piscina está iluminada por luces tenues, el agua refleja destellos plateados y hay una ligera humedad en el aire.",
+      "cuerpo": null,
+      "objetos": [
+        {
+          "nombre": "Candelabro",
+          "descripcion": "Candelabro de bronce parcialmente sumergido, con gotas de agua y una fina capa de polvo que sugiere movimiento reciente."
+        }
+      ]
+    },
+    {
+      "nombre": "Sala secreta",
+      "descripcion": "Una habitación oculta tras una estantería, iluminada tenuemente por velas, con paredes cubiertas de símbolos antiguos.",
+      "cuerpo": null,
+      "objetos": [
+        {
+          "nombre": "Cuchillo",
+          "descripcion": "Cuchillo de hoja larga, ligeramente oxidado, con una mancha de polvo que coincide con la alfombra del salón."
+        }
+      ]
+    },
+    {
+      "nombre": "Salon",
+      "descripcion": "Al entrar al salón, la luz tenue ilumina mesas de cristal y una gran ventana que da al jardín; el ambiente huele a perfume y a una leve nota amarga.",
+      "cuerpo": null,
+      "objetos": [
+        {
+          "nombre": "Veneno",
+          "descripcion": "Frasco de veneno medio roto, con un aroma a amargura, parece fuera de lugar y sugiere que alguien lo manipuló sin usarlo."
+        }
+      ]
+    }
+  ],
+  "personajes": [
+    {
+      "nombre": "Caterina \"La Viuda\" Moretti",
+      "primera_impresion": "Una mujer elegante y dominante, su mirada fría corta el aire mientras observa cada detalle sin decir más de lo necesario.",
+      "respuestas": {
+        "Que tipo de relacion mantenia con la victima ultimamente?": "Mantuvimos una relación de conveniencia; la Marquesa era una pieza clave en mi negocio y su silencio era esencial. Nuestro vínculo era utilitario, sin afecto ni lealtad.",
+        "Ha notado algun comportamiento extrano en alguno de los invitados hoy?": "He observado que el jardinero se quedó demasiado tiempo en la biblioteca, como si buscara algo que no debía encontrar. Ese comportamiento me parece sospechoso, aunque no intervendré.",
+        "Quien cree que esta ocultando informacion importante ahora mismo?": "Will parece esconder algo bajo su fachada de camaradería, pero su silencio revela más de lo que admite. No confiaré en sus palabras hasta que pruebe su lealtad.",
+        "Cree que la victima se sentia amenazada por alguien en particular?": "La Marquesa sospechaba de los antiguos socios que ahora están fuera del juego; su temor era palpable, aunque nadie lo admitía. Ese miedo la hacía vulnerable, y yo estaba preparada para aprovecharlo."
+      }
+    },
+    {
+      "nombre": "El Marques de la Seta",
+      "primera_impresion": "Un hombre de porte elegante y mirada seria, con un aire de melancolía que revela su naturaleza reservada.",
+      "respuestas": {
+        "Hay alguien en esta sala en quien confie plenamente?": "No, en el jardín no confío plenamente en nadie. Cada invitado parece ocultar algo, y prefiero mantener la distancia.",
+        "Quien cree que esta ocultando informacion importante ahora mismo?": "Me parece que Caterina está ocultando información. Su actitud nerviosa y sus constantes excusas me hacen sospechar.",
+        "Cual fue la ultima interaccion que tuvo con la victima antes del suceso?": "La última vez que hablé con la Marquesa fue en el jardín, donde le entregué una carta que había escrito en secreto. Fue un breve intercambio, pero sentí su gratitud. Después de eso no volví a verla antes del incidente.",
+        "Vio a alguien desplazarse solo por la casa o el lugar del encuentro?": "Observé a Will caminar solo por el salón, mirando al cielo. No entró en la habitación de sirvientes, pero su presencia me llamó la atención."
+      }
+    },
+    {
+      "nombre": "Elias Vann",
+      "primera_impresion": "Un hombre de mirada gélida, con una lupa antigua que limpia meticulosamente, habla en tono bajo y formal, como un bibliotecario que revisa cada página antes de pasarla.",
+      "respuestas": {
+        "Que tipo de relacion mantenia con la victima ultimamente?": "Mantengo una relación estrictamente cordial, como el vínculo entre un archivista y un manuscrito valioso; nuestras interacciones se limitan a intercambios breves en los pasillos de la mansión.",
+        "Cree que la victima se sentia amenazada por alguien en particular?": "Los indicios que he registrado sugieren que la marquesa percibía una sombra de peligro, quizás emanada de quien se movía entre los salones con la misma discreción de un ladrón de secretos.",
+        "Escucho o vio algo fuera de lo comun en las ultimas horas?": "En la penumbra escuché el eco metálico de un martillo resonando contra la madera, un sonido que no corresponde a la rutina de la biblioteca ni al susurro de las cartas.",
+        "Quien cree que esta ocultando informacion importante ahora mismo?": "Mi instinto me indica que quien oculta la verdad es aquel que, bajo la apariencia de cortesía, guarda una llave que nunca mostró, como el jardinero que oculta la herramienta bajo la tierra."
+      }
+    },
+    {
+      "nombre": "Bella / Isabella Dupont",
+      "primera_impresion": "Una figura frágil, voz casi un susurro melódico, evita la mirada directa y su pañuelo de seda ondea con un leve perfume a lavanda.",
+      "respuestas": {
+        "Conoce algun secreto de este lugar o de los invitados que pueda ser relevante?": "He escuchado, entre los susurros del jardín, que el Marques de la Seta guarda una carta de amor dirigida a la marquesa, oculta entre las hojas. Ese pequeño secreto no parece ligado al crimen, pero el perfume de la carta aún persiste en el aire.",
+        "De quien sospecha usted mas en este momento y por que?": "Mi intuición me lleva a observar a Caterina \"La Viuda\" Moretti; su presencia en el salón toda la noche y la ausencia de la víctima allí hacen que su sombra sea más larga que la de los demás. Además, el martillo encontrado en la habitación de sirvientes parece haber sido llevado por alguien que conocía bien esa zona.",
+        "Cree que la victima se sentia amenazada por alguien en particular?": "Siento que la marquesa vivía bajo una tensión constante, especialmente por la presencia de una figura autoritaria como Caterina, cuya mirada nunca se aparta del poder. El eco del martillo en la noche sugiere que esa amenaza pudo haber sido percibida como real.",
+        "Hay alguien en esta sala en quien confie plenamente?": "Confío en el silencio del jardinero, que siempre trabaja entre las sombras sin buscar protagonismo; su mirada evita la confrontación y su mano nunca se mancha de sangre. En esta casa de murmullos, su discreción es un refugio."
+      }
+    },
+    {
+      "nombre": "Elena Varela",
+      "primera_impresion": "Una niña de once años, de aspecto pálido y mirada intensa, habla con voz baja y adulta, observando todo como si fuera una detective en miniatura.",
+      "respuestas": {
+        "Conoce algun secreto de este lugar o de los invitados que pueda ser relevante?": "Sé que en la habitación principal había una foto familiar que desapareció justo después del crimen; la había guardado bajo mi almohada y ahora no está. No es una pista directa al asesino, pero muestra que alguien revisó la habitación esa noche.",
+        "Cual fue la ultima interaccion que tuvo con la victima antes del suceso?": "La última vez que vi a la marquesa fue cuando me entregó una pequeña maceta de plantas medicinales para que la regara. Me sonrió y me dijo que las plantas siempre dicen la verdad, y luego se fue a la habitación de sirvientes.",
+        "Ha notado algun comportamiento extrano en alguno de los invitados hoy?": "Observé a Will mirando fijamente al salón mientras Caterina leía cartas, y parecía incómodo, como si ocultara algo. También noté que el Marqués de la Seta se escapó al jardín con una carta de amor en la mano, pero volvió rápidamente.",
+        "Quien cree que saldria mas beneficiado con la desaparicion de la victima?": "Creo que Caterina, la viuda, se beneficiaría al heredar la fortuna de la marquesa, y Will también podría ganar al ayudarla. Sin embargo, mi intuición me dice que el verdadero beneficio está en el silencio de los que guardan secretos."
+      }
+    },
+    {
+      "nombre": "Don Fernando",
+      "primera_impresion": "Un hombre imponente con un sombrero mexicano gigante, grita con una sonrisa perturbadora que nunca abandona, como si el propio sol ardiera en su cabeza.",
+      "respuestas": {
+        "De quien sospecha usted mas en este momento y por que?": "Sospecho más a Caterina, la Viuda, porque parece un flojo que no puede sostener mi mirada. Siempre está con una copa de leche o agua, señal de debilidad que no tolero.",
+        "Hay alguien en esta sala en quien confie plenamente?": "No confío plenamente en nadie aquí, pero si alguien mantiene su palabra y no bebe nada que no sea tequila, tal vez merezca mi respeto. Yo prefiero la lealtad a la sombra de la duda.",
+        "Donde se encontraba usted cuando empezo a notar que algo iba mal?": "Yo estaba en la piscina, revisando la fuga que reporté, con mi sombrero al sol, cuando escuché el primer grito de alerta. El agua se escurría y yo intentaba taparla con la manguera que tengo a mano.",
+        "Escucho o vio algo fuera de lo comun en las ultimas horas?": "Escuché un golpe sordo proveniente de la habitación de sirvientes y vi cómo el agua de la fuga chisporroteaba bajo la luz, pero nada más extraño. Mi atención estaba en el sonido del agua, no en los murmullos de los demás."
+      }
+    },
+    {
+      "nombre": "Will",
+      "primera_impresion": "Un hombre severo, con escopeta en mano, parece más preocupado por los insectos que por el asesinato.",
+      "respuestas": {
+        "Cual fue la ultima interaccion que tuvo con la victima antes del suceso?": "La vi por última vez en el jardín, cuando la Marquesa se detuvo a observar las rosas mientras yo revisaba el terreno en busca de roedores. Intercambiamos un breve saludo y le comenté que la escopeta estaba lista por cualquier plaga. No hubo nada más.",
+        "Quien de los presentes cree que tenia algun problema pendiente con la victima?": "Me parece que el Marqués de la Seta guardaba cierta tensión; siempre le he visto ocultar una carta de amor que podría haberle causado molestias. No creo que sea él, pero su secreto me llama la atención.",
+        "Escucho o vio algo fuera de lo comun en las ultimas horas?": "Escuché un leve crujido proveniente del salón, como si alguien hubiera dejado caer un objeto pesado, pero no me acerqué; mi escopeta estaba ocupada limpiando la zona de posibles nidos. Además, el viento agitó las hojas del jardín, lo que me distrajo.",
+        "Vio a alguien desplazarse solo por la casa o el lugar del encuentro?": "Vi al Marqués de la Seta caminar solo por el jardín, deteniéndose bajo la fuente para fumar. No vi a nadie más vagando sin compañía."
+      }
+    }
+  ],
+  "mapa_pistas": {
+    "descripcion": "Recorre las habitaciones y entrevista a los presentes para conectar coartadas y objetos ocultos que revelan al asesino, el arma y la escena del crimen.",
+    "coartada_asesino": "Caterina asegura que estuvo toda la noche en el salón, leyendo cartas y preparando una fiesta, sin haber salido del salón.",
+    "coartada_complice": "Will afirma que acompañó a Caterina al jardín para observar las estrellas, pero nunca entró en la habitación de sirvientes.",
+    "secretos_inocentes": {
+      "El Marques de la Seta": "Oculta una carta de amor dirigida a la marquesa, pero no tiene relación con el asesinato.",
+      "Elias Vann": "Tiene una llave de la biblioteca que perdió hace semanas, sin saber que abre la sala secreta.",
+      "Bella / Isabella Dupont": "Se escapó brevemente al jardín para fumar, dejando su perfume en la fuente.",
+      "Elena Varela": "Guardaba una foto familiar en la habitación principal, la cual desapareció tras el crimen.",
+      "Don Fernando": "Se quejó de una fuga en la piscina que requería la manguera, pero no la usó esa noche."
+    },
+    "pistas_clave": [
+      {
+        "tipo": "objeto",
+        "fuente": "Habitacion de sirvientes",
+        "pregunta": null,
+        "descripcion": "Se encontró un martillo con manchas de sangre, indicando el arma del crimen."
+      },
+      {
+        "tipo": "respuesta_personaje",
+        "fuente": "Salon",
+        "pregunta": "¿Quién vio a Caterina entrar al salón antes del asesinato?",
+        "descripcion": "Testimonio de Will que confirma la coartada falsa de Caterina."
+      },
+      {
+        "tipo": "habitacion",
+        "fuente": "Biblioteca",
+        "pregunta": "¿Qué objeto falta en la biblioteca que podría haber sido usado como arma?",
+        "descripcion": "La pistola está ausente, descartando su uso como arma."
+      }
+    ]
+  }
+}
