@@ -1184,13 +1184,92 @@ screen quick_nav():
                 action Show("talk_screen")
 
 
+## 地点NPC显示 ###################################################################
+##
+## 在当前地点显示可点击的NPC肖像。
+
+screen location_npcs():
+    tag npc_overlay
+    zorder 50
+
+    for npc_id, loc in npc_location.items():
+        if loc == current_location:
+            $ pos = NPC_POSITIONS.get(current_location, (300, 400))
+            $ portrait = npc_portrait_map.get(npc_id, "")
+            $ npc_name = NPC_NAMES.get(npc_id, "")
+
+            imagebutton:
+                idle Transform(portrait, xysize=(250, 350), fit="contain")
+                hover Transform(portrait, xysize=(265, 370), fit="contain")
+                pos pos
+                anchor (0.5, 1.0)
+                action [Hide("location_npcs"), Jump("talk_" + npc_id)]
+
+            text npc_name:
+                pos (pos[0], pos[1] + 20)
+                xanchor 0.5
+                size 16
+                color "#ffffff"
+                outlines [(2, "#000000aa", 0, 0)]
+
+
+## 凶器显示 #####################################################################
+##
+## 在当前地点显示已分配的凶器图片和名称。
+
+screen weapons_display():
+    zorder 40
+
+    for wnum, (wloc, wx, wy) in weapon_placements.items():
+        if wloc == current_location:
+            $ wtype_idx = weapon_type.get(wnum, 0)
+            $ wname, wimg = WEAPON_DATA[wtype_idx]
+
+            imagebutton:
+                pos (wx, wy)
+                anchor (0.5, 1.0)
+                idle Transform(wimg, xsize=200, fit="contain")
+                hover Transform(wimg, xsize=210, fit="contain", matrixcolor=BrightnessMatrix(0.15))
+                action [Hide("location_npcs"), SetVariable("inspecting_weapon", wnum), Jump("inspect_weapon")]
+
+            text wname:
+                pos (wx, wy + 5)
+                anchor (0.5, 0.0)
+                size 11
+                color "#ffffff"
+                textalign 0.5
+                outlines [(1, "#000000cc", 0, 0)]
+
+
+## 凶器调试标记 #################################################################
+##
+## 在所有可能刷新凶器的位置显示黄色半透明色块，方便调试。
+## 已禁用 - 取消注释可重新启用。
+
+# screen debug_weapon_slots():
+#     zorder 35
+#
+#     for dloc, positions in WEAPON_SLOTS.items():
+#         if dloc == current_location:
+#             for (dx, dy) in positions:
+#                 frame:
+#                     pos (dx, dy)
+#                     anchor (0.5, 1.0)
+#                     xsize 28
+#                     ysize 28
+#                     padding (0, 0)
+#                     background "#ffff0088"
+
+
 ## 交谈界面 #####################################################################
 ##
-## 显示七个人物肖像，点击可与其对话。
+## 显示存活人物肖像（死者除外），点击可与其对话。
 
 screen talk_screen():
     zorder 200
     modal True
+
+    $ alive = [(nid, NPC_NAMES[nid], npc_portrait_map[nid]) for nid in npc_location.keys()]
 
     add "#000000cc"
 
@@ -1209,94 +1288,35 @@ screen talk_screen():
         hbox:
             spacing 22
             xalign 0.5
-
-            button:
-                background None
-                hover_background "#ffffff22"
-                action [Hide("talk_screen"), Jump("talk_madam")]
-                vbox:
-                    xalign 0.5
-                    add "images/sprites/Caterina La Viuda Moretti.png" xsize 200
-                    text "Caterina La Viuda Moretti":
-                        size 12
-                        color "#ffffff"
+            for nid, nname, nportrait in alive[:4]:
+                button:
+                    background None
+                    hover_background "#ffffff22"
+                    action [Hide("talk_screen"), Jump("talk_" + nid)]
+                    vbox:
                         xalign 0.5
+                        add Transform(nportrait, xysize=(200, 250), fit="contain")
+                        text nname:
+                            size 12
+                            color "#ffffff"
+                            xalign 0.5
 
-            button:
-                background None
-                hover_background "#ffffff22"
-                action [Hide("talk_screen"), Jump("talk_guest")]
-                vbox:
-                    xalign 0.5
-                    add "images/sprites/El Marqués de la Seta (Blanco Crema).png" xsize 200
-                    text "El Marqués de la Seta":
-                        size 12
-                        color "#ffffff"
-                        xalign 0.5
-
-            button:
-                background None
-                hover_background "#ffffff22"
-                action [Hide("talk_screen"), Jump("talk_butler")]
-                vbox:
-                    xalign 0.5
-                    add "images/sprites/Elias Vann.png" xsize 200
-                    text "Elias Vann":
-                        size 12
-                        color "#ffffff"
-                        xalign 0.5
-
-            button:
-                background None
-                hover_background "#ffffff22"
-                action [Hide("talk_screen"), Jump("talk_daughter")]
-                vbox:
-                    xalign 0.5
-                    add "images/sprites/Isabella Bella Dupont.png" xsize 200
-                    text "Isabella Bella Dupont":
-                        size 12
-                        color "#ffffff"
-                        xalign 0.5
-
-        hbox:
-            spacing 22
-            xalign 0.5
-
-            button:
-                background None
-                hover_background "#ffffff22"
-                action [Hide("talk_screen"), Jump("talk_chef")]
-                vbox:
-                    xalign 0.5
-                    add "images/sprites/char_noname_1.png" xsize 200
-                    text "Chef Li":
-                        size 12
-                        color "#ffffff"
-                        xalign 0.5
-
-            button:
-                background None
-                hover_background "#ffffff22"
-                action [Hide("talk_screen"), Jump("talk_gardener")]
-                vbox:
-                    xalign 0.5
-                    add "images/sprites/char_noname_2.png" xsize 200
-                    text "Gardener Chen":
-                        size 12
-                        color "#ffffff"
-                        xalign 0.5
-
-            button:
-                background None
-                hover_background "#ffffff22"
-                action [Hide("talk_screen"), Jump("talk_driver")]
-                vbox:
-                    xalign 0.5
-                    add "images/sprites/char_noname_3.png" xsize 200
-                    text "Driver Zhou":
-                        size 12
-                        color "#ffffff"
-                        xalign 0.5
+        if len(alive) > 4:
+            hbox:
+                spacing 22
+                xalign 0.5
+                for nid, nname, nportrait in alive[4:]:
+                    button:
+                        background None
+                        hover_background "#ffffff22"
+                        action [Hide("talk_screen"), Jump("talk_" + nid)]
+                        vbox:
+                            xalign 0.5
+                            add Transform(nportrait, xysize=(200, 250), fit="contain")
+                            text nname:
+                                size 12
+                                color "#ffffff"
+                                xalign 0.5
 
     textbutton "Close":
         xalign 0.5
@@ -1331,13 +1351,13 @@ screen map_screen():
 
         add "gui/map/mini_map_bg.png"
 
-        # --- Hall ---
+        # --- Salon ---
         button:
             xpos 227  ypos 322
             xsize 404  ysize 187
             background None
             hover_background "#ffffff22"
-            action [Hide("map_screen"), Jump("hall")]
+            action [Hide("map_screen"), Jump("salon")]
 
         # --- Master Bedroom ---
         button:
@@ -1347,13 +1367,13 @@ screen map_screen():
             hover_background "#ffffff22"
             action [Hide("map_screen"), Jump("master_bedroom")]
 
-        # --- Guest Bedroom ---
+        # --- Guest Quarters ---
         button:
             xpos 335  ypos 91
             xsize 106  ysize 132
             background None
             hover_background "#ffffff22"
-            action [Hide("map_screen"), Jump("guest_bedroom")]
+            action [Hide("map_screen"), Jump("guest_quarters")]
 
         # --- Kitchen ---
         button:
@@ -1379,13 +1399,13 @@ screen map_screen():
             hover_background "#ffffff22"
             action [Hide("map_screen"), Jump("pool")]
 
-        # --- Study ---
+        # --- Library ---
         button:
             xpos 453  ypos 91
             xsize 240  ysize 159
             background None
             hover_background "#ffffff22"
-            action [Hide("map_screen"), Jump("study")]
+            action [Hide("map_screen"), Jump("library")]
 
         # --- Hidden Room (only after discovery) ---
         if hidden_room_found:
@@ -1402,6 +1422,237 @@ screen map_screen():
         yalign 0.90
         text_size 18
         action Hide("map_screen")
+
+
+## 第一人称手部 #################################################################
+##
+## 屏幕底部显示左右手图片，模拟第一人称视角。
+## 左手点击 = Look Around，右手点击 = Open Map。
+
+image left_hand_idle = Transform("images/Left_hand.png", xsize=420, fit="contain")
+image left_hand_hover = Transform("images/Left_hand.png", xsize=420, fit="contain", matrixcolor=BrightnessMatrix(0.12))
+image right_hand_idle = Transform("images/Right_hand.png", xsize=420, fit="contain")
+image right_hand_hover = Transform("images/Right_hand.png", xsize=420, fit="contain", matrixcolor=BrightnessMatrix(0.12))
+
+screen hands_display():
+    zorder 150
+
+    # Left hand - Look Around
+    imagebutton:
+        idle "left_hand_idle"
+        hover "left_hand_hover"
+        xalign 0.0
+        yalign 1.0
+        action Jump(current_location + "_look")
+
+    # Right hand - Open Map
+    imagebutton:
+        idle "right_hand_idle"
+        hover "right_hand_hover"
+        xalign 1.0
+        yalign 1.0
+        action Show("map_screen")
+
+
+## 倒计时 #########################################################################
+##
+## 屏幕右上角显示10分钟倒计时。时间归零后强制进入指认阶段。
+## 也可手动点击倒计时区域进入指认阶段（可通过退出按钮退出）。
+
+screen countdown_timer():
+    zorder 200
+
+    if time_left > 0:
+        timer 1.0 repeat True action [
+            SetVariable("time_left", time_left - 1),
+            If(time_left <= 1, [
+                SetVariable("accusation_active", True),
+                SetVariable("accusation_manual", False),
+                Show("accusation_screen")
+            ])
+        ]
+
+    frame:
+        xalign 1.0
+        yalign 0.0
+        xoffset -20
+        yoffset 10
+        xpadding 14
+        ypadding 8
+        background "#000000bb"
+
+        button:
+            background None
+            hover_background "#ffffff33"
+            action [
+                SetVariable("accusation_active", True),
+                SetVariable("accusation_manual", True),
+                Show("accusation_screen")
+            ]
+
+            vbox:
+                xalign 0.5
+                spacing 2
+                text "Time Left" size 12 color "#aaaaaa" xalign 0.5
+                $ mins = max(0, time_left // 60)
+                $ secs = max(0, time_left % 60)
+                text "[mins:02d]:[secs:02d]" size 24 color "#ffffff" xalign 0.5
+
+
+## 指认阶段 #####################################################################
+##
+## 指认阶段界面。手动进入时可退出，倒计时归零时强制进入不可退出。
+
+screen accusation_screen():
+    zorder 300
+    modal True
+
+    add "#000000cc"
+
+    add "images/fase/pantallafinal.png":
+        xalign 0.5
+        yalign 0.5
+        xsize 1550
+        fit "contain"
+
+    # Selection area centered over the background
+    vbox:
+        xalign 0.5
+        yalign 0.5
+        xmaximum 1450
+        spacing 10
+
+        # --- Culprit ---
+        frame:
+            xalign 0.5  xsize 200
+            background "#00000088"
+            text "CULPRIT" size 20 color "#ffffff" xalign 0.5
+
+        hbox:
+            xalign 0.5
+            spacing 8
+            $ alive_npcs = [(nid, NPC_NAMES[nid], npc_portrait_map[nid]) for nid in npc_location.keys()]
+            for nid, nname, nportrait in alive_npcs:
+                $ sel = (accusation_char == nid)
+                button:
+                    xsize 145  ysize 180
+                    background ("#4488ff" if sel else "#222222")
+                    hover_background "#666666"
+                    action SetVariable("accusation_char", nid)
+                    vbox:
+                        xalign 0.5  yalign 0.5  spacing 5
+                        add Transform(nportrait, xsize=115, ysize=140, fit="contain") xalign 0.5
+                        text nname size 12 color "#ffffff" xalign 0.5 textalign 0.5
+
+        # --- Accomplice ---
+        frame:
+            xalign 0.5  xsize 200
+            background "#00000088"
+            text "ACCOMPLICE" size 20 color "#ffffff" xalign 0.5
+
+        hbox:
+            xalign 0.5
+            spacing 8
+            $ all_npcs = [(nid, NPC_NAMES[nid], npc_portrait_map[nid]) for nid in npc_portrait_map.keys() if nid != victim_id]
+            for nid, nname, nportrait in all_npcs:
+                $ sel = (accusation_accomplice == nid)
+                button:
+                    xsize 145  ysize 180
+                    background ("#cc8844" if sel else "#222222")
+                    hover_background "#666666"
+                    action SetVariable("accusation_accomplice", nid)
+                    vbox:
+                        xalign 0.5  yalign 0.5  spacing 5
+                        add Transform(nportrait, xsize=115, ysize=140, fit="contain") xalign 0.5
+                        text nname size 12 color "#ffffff" xalign 0.5 textalign 0.5
+
+        # --- Weapons ---
+        frame:
+            xalign 0.5  xsize 200
+            background "#00000088"
+            text "WEAPONS" size 20 color "#ffffff" xalign 0.5
+
+        hbox:
+            xalign 0.5
+            spacing 6
+            for wnum in range(1, 14):
+                $ sel = (accusation_weapon == wnum)
+                $ wtype_idx = weapon_type.get(wnum, 0)
+                $ wname, wimg = WEAPON_DATA[wtype_idx]
+                button:
+                    xsize 90  ysize 105
+                    background ("#ff4444" if sel else "#222222")
+                    hover_background "#666666"
+                    action SetVariable("accusation_weapon", wnum)
+                    vbox:
+                        xalign 0.5  yalign 0.5  spacing 4
+                        add Transform(wimg, xsize=65, fit="contain") xalign 0.5
+                        text wname size 10 color "#ffffff" xalign 0.5 textalign 0.5
+
+        # Weapon feedback text
+        if accusation_weapon is not None:
+            $ wtype_idx = weapon_type.get(accusation_weapon, 0)
+            $ sel_wname, sel_wimg = WEAPON_DATA[wtype_idx]
+            frame:
+                xalign 0.5
+                xpadding 14  ypadding 6
+                background "#ff444488"
+                hbox:
+                    xalign 0.5
+                    spacing 10
+                    add Transform(sel_wimg, xsize=35, fit="contain")
+                    text "Selected weapon: [sel_wname]":
+                        size 16
+                        color "#ffffff"
+                        yalign 0.5
+
+        # --- Locations ---
+        frame:
+            xalign 0.5  xsize 200
+            background "#00000088"
+            text "LOCATIONS" size 20 color "#ffffff" xalign 0.5
+
+        hbox:
+            xalign 0.5
+            spacing 8
+            for loc_id in LOCATIONS_FOR_NPC:
+                $ sel = (accusation_location == loc_id)
+                $ loc_data = locations.get(loc_id, {})
+                $ loc_name = loc_data.get("name", loc_id)
+                $ loc_img = loc_data.get("image", "")
+                button:
+                    xsize 145  ysize 105
+                    background ("#4488ff" if sel else "#222222")
+                    hover_background "#666666"
+                    action SetVariable("accusation_location", loc_id)
+                    vbox:
+                        xalign 0.5  yalign 0.5  spacing 3
+                        add Transform(loc_img, xsize=120, ysize=60, fit="contain") xalign 0.5
+                        text loc_name size 11 color "#ffffff" xalign 0.5
+
+        null height 6
+
+        # --- Accuse button ---
+        textbutton "Accuse!":
+            xalign 0.5
+            text_size 26
+            action NullAction()
+
+    # Exit button
+    if accusation_manual:
+        textbutton "Exit Accusation":
+            xalign 0.5
+            yalign 0.92
+            text_size 16
+            action [
+                SetVariable("accusation_active", False),
+                SetVariable("accusation_manual", False),
+                SetVariable("accusation_char", None),
+                SetVariable("accusation_weapon", None),
+                SetVariable("accusation_location", None),
+                SetVariable("accusation_accomplice", None),
+                Hide("accusation_screen")
+            ]
 
 
 ## Confirm screen ##############################################################

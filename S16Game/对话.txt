@@ -191,3 +191,151 @@
 4. **talk_screen**（screens.rpy 新增）：半透明遮罩 + 两行排列 7 个人物肖像（上4下3），每个肖像尺寸 200px 宽，悬停高亮，显示角色名
 
 5. **7 个对话标签**（script.rpy 末尾）：talk_madam / talk_guest / talk_butler / talk_daughter / talk_chef / talk_gardener / talk_driver，每个包含 3 句简单对话，对话结束后跳回当前房间
+
+【用户】关于项目你还记得什么
+
+【助手】根据记忆文件，项目是 S16Game 侦探推理视觉小说，Ren'Py引擎，1920×1080。8个角色、8个地点（纯色背景）、导航系统、交谈系统已完成。待办：文字溢出、NPC对话内容、破案逻辑、音效。
+
+【用户】我把角色的图片更新了一下，现在是8位角色，所以需要你重新设计一下游戏。然后角色的名字更新成那些文件的名字，图片也要更新。
+
+【助手】已完成以下更新：
+1. script.rpy — 角色重定义为9个（1侦探+8NPC），名字按sprites文件名：Elias Vann, Caterina, Isabella, Blanco Crema, Don Fernando, Elena Varela, La Marquesa Isolda, Will。肖像image路径全部更新为实际文件。地点系统改用 images/lugares/ 下的8张背景图（Main Hall, Lounge, Guest Quarters, Kitchen, Garden, Pool, Library, Hidden Room）。8个talk label全部重写。
+2. screens.rpy — talk_screen 改为4×2网格显示8个肖像按钮。map_screen 地点标签和Jump目标全部更新。
+3. CLAUDE.md — 角色列表和地点列表更新。
+4. project-status.md — 记忆文件同步更新。
+
+
+【用户】有点小问题，hall应该是背景图4 salon，而master bedroom 应该是1 habitacion principal
+
+【助手】已交换两个地点的背景图和名称：
+- Hall (中心区域) → 改名 Salon，背景改为 4_Salon.png
+- Lounge (右上区域) → 改名 Master Bedroom，背景改为 1_Habitacion_Principal.png
+同步更新了 script.rpy（locations dict、label名、默认起点）、screens.rpy（map_screen）、CLAUDE.md、project-status.md。
+
+
+【用户】现在有几个问题：背景图的分辨率比游戏的大，所以导致游戏中显示不全，想办法解决这个。另外，角色图也有一样的问题，游戏中显示不正常，尝试固定每个角色图的尺寸以便在游戏中正常显示。
+
+【助手】已分析所有图片分辨率：
+- 背景图：2816×1536（或2752×1536），游戏分辨率1920×1080，导致图片被裁切
+- 角色图：尺寸差异巨大（179×514 到 1478×1429），导致显示不一致
+
+修复内容：
+1. 背景图（script.rpy 8个地点）：使用 Transform(img, xysize=(1920, 1080), fit="cover") 缩放至填满屏幕
+2. 对话肖像（script.rpy 8个talk label）：添加 ysize 540 fit "contain" 限制高度
+3. 交谈面板肖像（screens.rpy talk_screen）：统一为 Transform(img, xysize=(200, 250), fit="contain") 固定缩略图尺寸
+
+【用户】下一步，在8个角色中，随机选择1位死者，直接在对话中移除这个人，然后剩下的7人，随机分布在不同的地点。在不同的地点里显示他们的图像，点击他们的图像可以直接对话
+
+【助手】已实现随机死者+NPC分布系统：
+
+1. script.rpy 新增：
+   - NPC_DATA / NPC_NAMES / NPC_POSITIONS / LOCATIONS_FOR_NPC 数据定义
+   - victim_id / victim_name / npc_location / npc_portrait_map 游戏状态变量
+   - npc_id_at(loc) 辅助函数，查找某地点内的NPC
+   - label start 中使用 renpy.random.shuffle 随机选死者+随机分配7个存活NPC到7个地点
+   - 8个地点标签均添加 show screen location_npcs 和 NPC在场描述
+
+2. screens.rpy 新增/修改：
+   - location_npcs 屏幕：在当前地点显示可点击NPC肖像（imagebutton），悬停放大效果
+   - talk_screen 改为动态遍历 npc_location，仅显示存活NPC（死者不出现）
+
+
+【用户】游戏目录下现在新增加了两个文件夹：audio和music。其中audio存放着背景音乐，三个音乐随机播放即可。video中存放着游戏开场动画，开始游戏前播放，记得加一个按ESC可以跳过动画的功能。
+
+【助手】已完成以下修改：
+
+1. script.rpy 第1-9行：新增音频定义和 play_random_bgm() 函数
+   - 定义 audio.bgm1/bgm2/bgm3 三个音频文件（Clave_de_Humo.mp3, La_Mansion_Cerrada_1.mp3, La_Mansion_Cerrada_2.mp3）
+   - play_random_bgm() 随机选择其中一首通过 renpy.music.play() 播放（自动循环）
+
+2. script.rpy 第100-102行：在 start label 开头添加
+   - $ renpy.movie_cutscene("video/Intro_Mansion.mp4") — 全屏播放开场动画，内置跳过功能，按ESC或点击即可跳过
+   - $ play_random_bgm() — 动画结束后随机播放一首背景音乐
+
+注意：用户提到 audio 和 music 两个文件夹，但实际只有 game/audio/ 存在（内含3个mp3），music 未找到，统一使用 audio 目录。
+
+【助手】修改完成！两个功能都已实现：
+- 开场视频在 game/video/Intro_Mansion.mp4，游戏开始时全屏播放，按 ESC 或点击鼠标即可跳过
+- 背景音乐从 game/audio/ 下三个 mp3 文件随机选取，开场动画结束后自动播放并循环 ♿
+
+【用户】左右手尺寸放大一些，然后还有一个问题：鼠标悬停在图片上之后图片透明度会增加，但鼠标移开之后透明度不会恢复
+
+【助手】尺寸从 320 改为 420，悬停效果从 alpha=0.7 改为 matrixcolor=BrightnessMatrix(0.12)
+
+【用户】不知道为什么鼠标移开之后有时候要一段时间才会恢复亮度，尝试修复如果难修就不用管了。
+
+【助手】改为使用 image 语句预定义 Transform 显示对象（left_hand_idle/hover, right_hand_idle/hover），imagebutton 引用稳定的命名引用而非每帧重建的 Transform，避免状态追踪延迟
+
+【用户】现在，在进入新的地点之后，有一个对地点的介绍，这个不用修改，但是场景介绍完之后有两个选项分别是look around和open map现在不需要了。
+
+【助手】移除了所有8个地点的 menu 块（Look Around / Open Map），_look 标签保留给手部按钮使用。每个地点描述后添加 pause 防止代码穿透到下一标签。
+
+【用户】删掉在房间内的选项之后，鼠标点击任何地点会直接切换到下一场景，我不希望点击能切换场景。角色位置检查一下：会不会生成在隐藏房间内，我希望角色不会在隐藏房间里。修改一下角色在不同场景中的位置。
+
+【助手】完成以下修改：
+1. 点击穿透修复：将所有8个地点的 pause 替换为 jump location_wait，新增 location_wait 标签使用 pause + 无限循环，这样点击空白处只会重新进入等待而不会切换场景。手部按钮的 Jump/Show 动作会中断这个循环。
+2. NPC不在隐藏房间：已确认 LOCATIONS_FOR_NPC 列表中不含 hidden_room，NPC永远不会在隐藏房间生成。
+3. NPC位置更新：
+   - 厨房: 669, 757
+   - 客卧: 684, 783
+   - 图书馆: 1131, 752
+   - 主卧: 1426, 736
+   - 大厅: 588, 720
+   - 花园: 672, 636
+   - 泳池: 736, 743
+
+【助手】全部修改完成。
+【用户】我已经把武器图片放在了对应的文件夹里，现在你可以在游戏中使用这些素材了。
+
+【助手】已完成武器图片集成。主要修改如下：
+
+**script.rpy：**
+- 添加 WEAPON_DATA 列表：13把武器的英文名称和图片路径
+- 添加 weapon_type 状态变量：记录每把武器编号对应的武器种类
+- 更新武器放置逻辑：每局游戏随机打乱武器种类分配
+
+**screens.rpy：**
+- weapons_display：用真实武器图片（100px）+ 名称标签替代红色方块，悬停放大并高亮
+- accusation_screen：指认界面的武器选择从红色数字按钮改为武器图片+名称按钮（80x90px）
+
+武器英文名称对照：Pistol、Trophy、Flowerpot、Shears、Hose、Pillow、Knife、Letter Opener、Candelabra、Baseball Bat、Brass Knuckles、Poison、Hammer
+【用户】武器放大一点，到原来的两倍，可以把用来调试的，表示可能出现武器位置的黄色色块去掉了。另外，切换场景是，人物会在场景变化之前就出现，这个也修改一下。
+
+【助手】已完成三项修改：
+
+1. 武器尺寸翻倍：weapons_display 中 idle xsize 100→200，hover 105→210
+2. 移除调试色块：debug_weapon_slots 屏幕已注释掉，8个地点标签中的 show screen debug_weapon_slots 已删除
+3. 修复NPC闪现：把所有地点标签的 $current_location 移到 scene ... with fade 之后。之前 current_location 在 fade 前就变了，导致新NPC在旧场景还在时闪现；现在等 scene fade 先执行，current_location 在 fade 期间才更新，NPC随新场景一起出现
+【用户】指认阶段的背景图片再大一些，相应的指认阶段的元素也适当放大；要增加一行，角色的图，用于指认帮凶；点击凶器时增加交互的文字；
+
+【助手】已完成指认界面重构：
+
+1. 背景图放大：xsize 1280→1550
+2. 所有元素按比例放大：
+   - 凶手按钮 125x155→145x180，肖像 100x120→115x140，字 11→12
+   - 凶器按钮 80x90→90x105，图 55→65，字 9→10
+   - 地点按钮 125x90→145x105，图 105x55→120x60，字 10→11
+   - 标题字 16→20，Accuse! 字 22→26
+3. 新增帮凶(ACCOMPLICE)选择行：独立选择，橙色高亮区分于凶手的蓝色
+4. 点击凶器交互文字：选中后显示红色半透明条，展示凶器缩略图+Selected weapon: [名称]
+
+script.rpy 新增 default accusation_accomplice = None，退出指认时一并重置
+【用户】现在，和人物对话的时候，增加四个可选择的选项。然后，点击场景中的武器时，也要增加交互对话，例如介绍武器，观察到什么，诸如此类。
+
+【助手】已完成两项功能：
+
+1. NPC对话改为4选项菜单：
+   - 每个NPC开场一句问候后出现 menu，4个可选问题
+   - 每个选项对应NPC不同回答，暗藏线索和人物关系
+   - 8个NPC共32条独特对话，涉及动机、不在场证明、人物关系、可疑行为等
+
+2. 点击场景武器交互：
+   - weapons_display 中点击武器 → 跳转 inspect_weapon 标签
+   - 武器大图(300px)居中显示，播放检视文本
+   - 13把武器各有独特描述（如手枪序列号被磨掉、奖杯底座凹陷、刀柄处有红色污渍等）
+   - 检视完毕自动返回当前地点
+
+新增内容：
+- script.rpy: default inspecting_weapon变量、WEAPON_DESCRIPTIONS列表、inspect_weapon标签
+- script.rpy: 8个talk标签全部重写为menu结构
+- screens.rpy: weapons_display action改为[SetVariable+Jump]
