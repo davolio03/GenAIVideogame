@@ -174,25 +174,15 @@ Genera exactamente este JSON:
 {{
   "intro": "Parrafo inicial para el jugador. No reveles solucion.",
   "mapa_pistas": {{
-    "descripcion": "Camino privado para deducir asesino, arma y habitacion.",
-    "coartada_asesino": "Coartada falsa del asesino.",
-    "coartada_complice": "Como el complice protege al asesino.",
-    "secretos_inocentes": {{
-      "Nombre personaje inocente": "Secreto menor no relacionado con el crimen."
-    }},
-    "pistas_clave": [
-      {{
-        "tipo": "objeto | respuesta_personaje | habitacion",
-        "fuente": "Fuente exacta",
-        "pregunta": null,
-        "descripcion": "Que pista contiene y a que apunta."
-      }}
-    ]
+    "descripcion": "Camino privado para deducir asesino, arma y habitacion."
   }}
 }}
 """
 
-    return llamar_mercury_json(user_prompt, system_prompt=system_prompt, max_tokens=2500)
+    intro_y_mapa = llamar_mercury_json(user_prompt, system_prompt=system_prompt, max_tokens=1200)
+    mapa_pistas = intro_y_mapa.get("mapa_pistas", {})
+    intro_y_mapa["mapa_pistas"] = {"descripcion": mapa_pistas.get("descripcion", "")}
+    return intro_y_mapa
 
 
 def generar_habitacion(

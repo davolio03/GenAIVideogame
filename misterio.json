@@ -1,75 +1,75 @@
 {
-    "muerto": "La Marquesa Isolda de Azul Real",
+    "muerto": "Elena Varela",
     "asesino": "Caterina \"La Viuda\" Moretti",
-    "complice": "Will",
-    "arma": "Martillo",
-    "habitacion": "Habitacion de sirvientes",
+    "complice": "El Marques de la Seta",
+    "arma": "Candelabro",
+    "habitacion": "Biblioteca",
     "ubicaciones_armas": {
-        "Almohada": "Biblioteca",
-        "Cuchillo": "Sala secreta",
-        "Abre cartas": "Jardin",
-        "Manguera": "Habitacion principal",
+        "Almohada": "Jardin",
+        "Cuchillo": "Jardin",
+        "Abre cartas": "Sala secreta",
+        "Manguera": "Piscina",
         "Cizalla": "Habitacion principal",
-        "Maceta": "Habitacion de sirvientes",
-        "Trofeo": "Cocina",
-        "Candelabro": "Piscina",
-        "Pistola": "Biblioteca",
-        "Veneno": "Salon",
-        "Puno americano": "Habitacion de sirvientes",
+        "Maceta": "Piscina",
+        "Trofeo": "Sala secreta",
+        "Candelabro": "Biblioteca",
+        "Pistola": "Salon",
+        "Veneno": "Piscina",
+        "Puno americano": "Cocina",
         "Bate de beisbol": "Habitacion de sirvientes",
-        "Martillo": "Habitacion de sirvientes"
+        "Martillo": "Jardin"
     },
     "ubicaciones_personajes": {
-        "Caterina \"La Viuda\" Moretti": "Salon",
-        "El Marques de la Seta": "Jardin",
-        "Elias Vann": "Sala secreta",
-        "Bella / Isabella Dupont": "Sala secreta",
-        "Elena Varela": "Habitacion principal",
-        "Don Fernando": "Piscina",
-        "La Marquesa Isolda de Azul Real": "Habitacion de sirvientes",
-        "Will": "Salon"
+        "Caterina \"La Viuda\" Moretti": "Sala secreta",
+        "El Marques de la Seta": "Sala secreta",
+        "Elias Vann": "Biblioteca",
+        "Bella / Isabella Dupont": "Biblioteca",
+        "Elena Varela": "Biblioteca",
+        "Don Fernando": "Biblioteca",
+        "La Marquesa Isolda de Azul Real": "Jardin",
+        "Will": "Jardin"
     },
     "preguntas_personajes": {
         "Caterina \"La Viuda\" Moretti": [
+            "Cree que la victima se sentia amenazada por alguien en particular?",
             "Que tipo de relacion mantenia con la victima ultimamente?",
-            "Ha notado algun comportamiento extrano en alguno de los invitados hoy?",
-            "Quien cree que esta ocultando informacion importante ahora mismo?",
-            "Cree que la victima se sentia amenazada por alguien en particular?"
+            "Cual fue la ultima interaccion que tuvo con la victima antes del suceso?",
+            "Que es lo primero que penso al enterarse de lo ocurrido?"
         ],
         "El Marques de la Seta": [
+            "Que es lo primero que penso al enterarse de lo ocurrido?",
             "Hay alguien en esta sala en quien confie plenamente?",
             "Quien cree que esta ocultando informacion importante ahora mismo?",
-            "Cual fue la ultima interaccion que tuvo con la victima antes del suceso?",
-            "Vio a alguien desplazarse solo por la casa o el lugar del encuentro?"
-        ],
-        "Elias Vann": [
-            "Que tipo de relacion mantenia con la victima ultimamente?",
-            "Cree que la victima se sentia amenazada por alguien en particular?",
-            "Escucho o vio algo fuera de lo comun en las ultimas horas?",
-            "Quien cree que esta ocultando informacion importante ahora mismo?"
-        ],
-        "Bella / Isabella Dupont": [
-            "Conoce algun secreto de este lugar o de los invitados que pueda ser relevante?",
-            "De quien sospecha usted mas en este momento y por que?",
-            "Cree que la victima se sentia amenazada por alguien en particular?",
-            "Hay alguien en esta sala en quien confie plenamente?"
-        ],
-        "Elena Varela": [
-            "Conoce algun secreto de este lugar o de los invitados que pueda ser relevante?",
-            "Cual fue la ultima interaccion que tuvo con la victima antes del suceso?",
-            "Ha notado algun comportamiento extrano en alguno de los invitados hoy?",
             "Quien cree que saldria mas beneficiado con la desaparicion de la victima?"
         ],
-        "Don Fernando": [
+        "Elias Vann": [
+            "Ha notado algun comportamiento extrano en alguno de los invitados hoy?",
+            "Quien cree que esta ocultando informacion importante ahora mismo?",
             "De quien sospecha usted mas en este momento y por que?",
-            "Hay alguien en esta sala en quien confie plenamente?",
+            "Conoce algun secreto de este lugar o de los invitados que pueda ser relevante?"
+        ],
+        "Bella / Isabella Dupont": [
+            "Quien cree que esta ocultando informacion importante ahora mismo?",
+            "Escucho o vio algo fuera de lo comun en las ultimas horas?",
+            "Quien de los presentes cree que tenia algun problema pendiente con la victima?",
+            "Vio a alguien desplazarse solo por la casa o el lugar del encuentro?"
+        ],
+        "Don Fernando": [
+            "Que es lo primero que penso al enterarse de lo ocurrido?",
+            "Escucho o vio algo fuera de lo comun en las ultimas horas?",
             "Donde se encontraba usted cuando empezo a notar que algo iba mal?",
-            "Escucho o vio algo fuera de lo comun en las ultimas horas?"
+            "Quien cree que esta ocultando informacion importante ahora mismo?"
+        ],
+        "La Marquesa Isolda de Azul Real": [
+            "Quien de los presentes cree que tenia algun problema pendiente con la victima?",
+            "Cual fue la ultima interaccion que tuvo con la victima antes del suceso?",
+            "Quien cree que esta ocultando informacion importante ahora mismo?",
+            "Hay alguien en esta sala en quien confie plenamente?"
         ],
         "Will": [
-            "Cual fue la ultima interaccion que tuvo con la victima antes del suceso?",
+            "Donde se encontraba usted cuando empezo a notar que algo iba mal?",
+            "Cree que la victima se sentia amenazada por alguien en particular?",
             "Quien de los presentes cree que tenia algun problema pendiente con la victima?",
-            "Escucho o vio algo fuera de lo comun en las ultimas horas?",
             "Vio a alguien desplazarse solo por la casa o el lugar del encuentro?"
         ]
     }
