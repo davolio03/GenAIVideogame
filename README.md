@@ -92,6 +92,8 @@ S16Game/last_mercury_response.txt
 
 ## 4. Lanzar el juego
 
+Necesitas tener instalado el Ren'Py SDK. El juego no se lanza ejecutando un `.py` directamente: se abre desde el Launcher de Ren'Py.
+
 El juego se lanza desde Ren'Py abriendo el proyecto:
 
 ```txt
@@ -101,7 +103,7 @@ S16Game/
 Flujo recomendado:
 
 1. Genera `S16Game/world_data.json` con `S16Game/build_prompt.py`.
-2. Abre Ren'Py Launcher.
+2. Abre Ren'Py Launcher incluido en el Ren'Py SDK.
 3. Selecciona el proyecto `S16Game`.
 4. Pulsa `Launch Project`.
 
