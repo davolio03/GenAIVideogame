@@ -1,0 +1,75 @@
+{
+  "asesino": "Don Fernando",
+  "complice": "Elias Vann",
+  "muerto": "Elena Varela",
+  "arma": "Martillo",
+  "habitacion": "Dormitorio Principal",
+  "ubicaciones_personajes": {
+    "Elias Vann": "Dormitorio Principal",
+    "Caterina": "Cocina",
+    "Isabella": "Jardin",
+    "Blanco Crema": "Biblioteca",
+    "Don Fernando": "Salon",
+    "La Marquesa Isolda": "Piscina",
+    "Will": "Habitacion de Invitados"
+  },
+  "ubicaciones_armas": {
+    "Cuchillo": "Salon",
+    "Candelabro": "Dormitorio Principal",
+    "Bate de Beisbol": "Habitacion de Invitados",
+    "Puno Americano": "Cocina",
+    "Abrecartas": "Jardin",
+    "Trofeo": "Piscina",
+    "Cizalla": "Biblioteca",
+    "Pistola": "Habitacion Oculta",
+    "Maceta": "Salon",
+    "Martillo": "Dormitorio Principal",
+    "Veneno": "Habitacion de Invitados",
+    "Almohada": "Cocina",
+    "Manguera": "Jardin"
+  },
+  "preguntas_personajes": {
+    "Elias Vann": [
+      "Conoce a alguien que quisiera hacer dano a la victima?",
+      "Hay algo que no me este contando?",
+      "Donde estaba cada persona despues de la cena?",
+      "Quien cree que pudo haber cometido este crimen?"
+    ],
+    "Caterina": [
+      "La victima tenia enemigos? De que tipo?",
+      "Vio u oyo algo sospechoso cerca de la hora del crimen?",
+      "Donde estaba usted la noche del crimen?",
+      "Que opina de los otros invitados esta noche?"
+    ],
+    "Isabella": [
+      "Noto algo extrano ultimamente en la mansion?",
+      "Como describiria su relacion con la victima?",
+      "Que cree que ocurrio realmente esta noche?",
+      "Ha notado algun comportamiento extrano en alguien esta noche?"
+    ],
+    "Blanco Crema": [
+      "Conoce a alguien que quisiera hacer dano a la victima?",
+      "Conoce el paradero exacto de la victima antes de su muerte?",
+      "Que cree que ocurrio realmente esta noche?",
+      "Donde estaba cada persona despues de la cena?"
+    ],
+    "Don Fernando": [
+      "Que opina de los otros invitados esta noche?",
+      "Ha notado algun comportamiento extrano en alguien esta noche?",
+      "Vio u oyo algo sospechoso cerca de la hora del crimen?",
+      "La victima tenia enemigos? De que tipo?"
+    ],
+    "La Marquesa Isolda": [
+      "Noto algo extrano ultimamente en la mansion?",
+      "Quien cree que pudo haber cometido este crimen?",
+      "Sabia usted de la existencia de alguna habitacion oculta en la mansion?",
+      "Como describiria su relacion con la victima?"
+    ],
+    "Will": [
+      "Hay algo que no me este contando?",
+      "Donde estaba cada persona despues de la cena?",
+      "Quien cree que pudo haber cometido este crimen?",
+      "Conoce el paradero exacto de la victima antes de su muerte?"
+    ]
+  }
+}

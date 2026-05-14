@@ -1,0 +1,12 @@
+=== DATOS DEL CASO ===
+victima: Blanco Crema
+asesino: La Marquesa Isolda
+arma: Trophy
+escena: Piscina
+complice: Caterina
+
+=== RESPUESTA PRINCIPAL ===
+Generado en segundo plano durante la sesion anterior
+
+=== RAZONAMIENTO ===
+Sigue las pistas ocultas en cada habitación, relaciona los objetos con los personajes y la ubicación del arma para deducir al asesino, el arma y la habitación del crimen.

@@ -4,7 +4,17 @@ Ren'Py visual novel project. Player takes on the role of a detective investigati
 
 ## Language
 
-ALL in-game content (dialogue, narration, UI labels, location names, character names, menu options) MUST be in English.
+ALL game content (dialogue, narration, UI labels, location names, menu options) MUST be in SPANISH. This includes all LLM-generated text and fallback content.
+
+## LLM Logging
+
+LLM responses are saved to `game/llm_logs/` with timestamp filenames (format: `YYYYMMDD_HHMMSS.txt`). Each file contains case info, main response, and reasoning response.
+
+## Key Rules
+
+- The accomplice (complice) ALWAYS exists — every case has a murderer AND an accomplice
+- Every playthrough generates DIFFERENT content (high temperature, uniqueness emphasis in prompts)
+- All LLM responses must be in Spanish
 
 ## Conversation Log
 

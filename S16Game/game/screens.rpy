@@ -1159,7 +1159,7 @@ screen quick_nav():
             spacing 8
             xalign 0.5
 
-            text "Current Location":
+            text "Ubicacion Actual":
                 size 13
                 color "#aaaaaa"
                 xalign 0.5
@@ -1171,17 +1171,25 @@ screen quick_nav():
 
             null height 8
 
-            textbutton "Map":
+            textbutton "Mapa":
                 xalign 0.5
                 text_size 22
                 action Show("map_screen")
 
             null height 5
 
-            textbutton "Talk":
+            textbutton "Hablar":
                 xalign 0.5
                 text_size 22
                 action Show("talk_screen")
+
+            null height 5
+
+            textbutton "Debug":
+                xalign 0.5
+                text_size 18
+                text_color "#ff8844"
+                action Show("debug_screen")
 
 
 ## 地点NPC显示 ###################################################################
@@ -1203,7 +1211,7 @@ screen location_npcs():
                 hover Transform(portrait, xysize=(265, 370), fit="contain")
                 pos pos
                 anchor (0.5, 1.0)
-                action [Hide("location_npcs"), Jump("talk_" + npc_id)]
+                action [Hide("location_npcs"), SetVariable("talking_to_npc", npc_id), Jump("talk_npc")]
 
             text npc_name:
                 pos (pos[0], pos[1] + 20)
@@ -1273,7 +1281,7 @@ screen talk_screen():
 
     add "#000000cc"
 
-    text "Who would you like to talk to?":
+    text "¿Con quien quieres hablar?":
         size 34
         color "#ffffff"
         xalign 0.5
@@ -1292,7 +1300,7 @@ screen talk_screen():
                 button:
                     background None
                     hover_background "#ffffff22"
-                    action [Hide("talk_screen"), Jump("talk_" + nid)]
+                    action [Hide("talk_screen"), SetVariable("talking_to_npc", nid), Jump("talk_npc")]
                     vbox:
                         xalign 0.5
                         add Transform(nportrait, xysize=(200, 250), fit="contain")
@@ -1309,7 +1317,7 @@ screen talk_screen():
                     button:
                         background None
                         hover_background "#ffffff22"
-                        action [Hide("talk_screen"), Jump("talk_" + nid)]
+                        action [Hide("talk_screen"), SetVariable("talking_to_npc", nid), Jump("talk_npc")]
                         vbox:
                             xalign 0.5
                             add Transform(nportrait, xysize=(200, 250), fit="contain")
@@ -1318,7 +1326,7 @@ screen talk_screen():
                                 color "#ffffff"
                                 xalign 0.5
 
-    textbutton "Close":
+    textbutton "Cerrar":
         xalign 0.5
         yalign 0.90
         text_size 18
@@ -1336,8 +1344,8 @@ screen map_screen():
     # Dimmed background overlay
     add "#000000cc"
 
-    # Title
-    text "Mansion Map":
+    # Titulo
+    text "Mapa de la Mansion":
         size 36
         color "#ffffff"
         xalign 0.5
@@ -1416,8 +1424,8 @@ screen map_screen():
                 hover_background "#ffffff22"
                 action [Hide("map_screen"), Jump("hidden_room")]
 
-    # Close button
-    textbutton "Close":
+    # Boton de cierre
+    textbutton "Cerrar":
         xalign 0.5
         yalign 0.90
         text_size 18
@@ -1493,7 +1501,7 @@ screen countdown_timer():
             vbox:
                 xalign 0.5
                 spacing 2
-                text "Time Left" size 12 color "#aaaaaa" xalign 0.5
+                text "Tiempo" size 12 color "#aaaaaa" xalign 0.5
                 $ mins = max(0, time_left // 60)
                 $ secs = max(0, time_left % 60)
                 text "[mins:02d]:[secs:02d]" size 24 color "#ffffff" xalign 0.5
@@ -1526,7 +1534,7 @@ screen accusation_screen():
         frame:
             xalign 0.5  xsize 200
             background "#00000088"
-            text "CULPRIT" size 20 color "#ffffff" xalign 0.5
+            text "CULPABLE" size 20 color "#ffffff" xalign 0.5
 
         hbox:
             xalign 0.5
@@ -1548,7 +1556,7 @@ screen accusation_screen():
         frame:
             xalign 0.5  xsize 200
             background "#00000088"
-            text "ACCOMPLICE" size 20 color "#ffffff" xalign 0.5
+            text "COMPLICE" size 20 color "#ffffff" xalign 0.5
 
         hbox:
             xalign 0.5
@@ -1570,7 +1578,7 @@ screen accusation_screen():
         frame:
             xalign 0.5  xsize 200
             background "#00000088"
-            text "WEAPONS" size 20 color "#ffffff" xalign 0.5
+            text "ARMAS" size 20 color "#ffffff" xalign 0.5
 
         hbox:
             xalign 0.5
@@ -1601,7 +1609,7 @@ screen accusation_screen():
                     xalign 0.5
                     spacing 10
                     add Transform(sel_wimg, xsize=35, fit="contain")
-                    text "Selected weapon: [sel_wname]":
+                    text "Arma seleccionada: [sel_wname]":
                         size 16
                         color "#ffffff"
                         yalign 0.5
@@ -1610,7 +1618,7 @@ screen accusation_screen():
         frame:
             xalign 0.5  xsize 200
             background "#00000088"
-            text "LOCATIONS" size 20 color "#ffffff" xalign 0.5
+            text "LUGARES" size 20 color "#ffffff" xalign 0.5
 
         hbox:
             xalign 0.5
@@ -1633,14 +1641,17 @@ screen accusation_screen():
         null height 6
 
         # --- Accuse button ---
-        textbutton "Accuse!":
+        textbutton "¡Acusar!":
             xalign 0.5
             text_size 26
-            action NullAction()
+            action [
+                SetVariable("accusation_active", False),
+                Jump("accusation_result")
+            ]
 
     # Exit button
     if accusation_manual:
-        textbutton "Exit Accusation":
+        textbutton "Salir de la Acusacion":
             xalign 0.5
             yalign 0.92
             text_size 16
@@ -1653,6 +1664,74 @@ screen accusation_screen():
                 SetVariable("accusation_accomplice", None),
                 Hide("accusation_screen")
             ]
+
+
+## 调试菜单 #####################################################################
+##
+## 显示案件答案和推理逻辑，方便开发调试。
+
+screen debug_screen():
+    zorder 300
+    modal True
+
+    add "#000000cc"
+
+    vbox:
+        xalign 0.5
+        yalign 0.5
+        xmaximum 800
+        spacing 12
+
+        text "INFO DEPURACION" size 30 color "#ff8844" xalign 0.5
+
+        null height 10
+
+        frame:
+            background "#1a1a1acc"
+            xpadding 20 ypadding 15
+            vbox:
+                spacing 8
+
+                hbox:
+                    text "Asesino:" size 18 color "#aaaaaa" xsize 180
+                    text "[murderer_name]" size 22 color "#ff4444"
+
+                hbox:
+                    text "Complice:" size 18 color "#aaaaaa" xsize 180
+                    if accomplice_name:
+                        text "[accomplice_name]" size 22 color "#ff8844"
+                    else:
+                        text "Ninguno" size 22 color "#888888"
+
+                hbox:
+                    text "Escena del Crimen:" size 18 color "#aaaaaa" xsize 180
+                    text "[crime_scene_name]" size 22 color "#4488ff"
+
+                hbox:
+                    text "Arma:" size 18 color "#aaaaaa" xsize 180
+                    text "[weapon_name_str]" size 22 color "#ff4444"
+
+        null height 8
+
+        frame:
+            background "#1a1a1acc"
+            xpadding 20 ypadding 15
+            vbox:
+                spacing 5
+                text "Razonamiento" size 20 color "#ff8844"
+
+                null height 4
+
+                if debug_reasoning:
+                    text "[debug_reasoning]" size 15 color "#cccccc"
+                else:
+                    text "Compara las pistas resaltadas en rojo en los dialogos de los NPC y los examenes de la escena del crimen.\nLas inconsistencias te señalaran al asesino, el arma y la ubicacion." size 15 color "#888888"
+
+    textbutton "Cerrar":
+        xalign 0.5
+        yalign 0.88
+        text_size 18
+        action Hide("debug_screen")
 
 
 ## Confirm screen ##############################################################

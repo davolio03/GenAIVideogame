@@ -1,0 +1,290 @@
+{
+  "intro": "Parrafo inicial para el jugador. No reveles solucion.",
+  "mapa_pistas": {
+    "descripcion": "Camino privado para deducir asesino, arma y habitacion."
+  }
+}
+
+================================================================================
+
+{
+  "nombre":"Biblioteca",
+  "descripcion":"Estanterías de libros antiguos, luz tenue, aroma a papel.",
+  "cuerpo":null,
+  "objetos":[
+    {
+      "nombre":"Cizalla",
+      "descripcion":"Corte afilado, manchas de óxido, parece haber sido usada recientemente; una pequeña marca de metal en la mesa sugiere que otro objeto pesado pasó por aquí."
+    }
+  ]
+}
+
+================================================================================
+
+{
+  "nombre": "Cocina",
+  "descripcion": "Al entrar, el aroma a especias se mezcla con el eco de pasos recientes.",
+  "cuerpo": null,
+  "objetos": [
+    {
+      "nombre": "Puno Americano",
+      "descripcion": "Un puño de acero con manchas de grasa, como si alguien lo hubiera usado para abrir una puerta con fuerza."
+    },
+    {
+      "nombre": "Almohada",
+      "descripcion": "Almohada de tela arrugada, con una pequeña marca de presión que sugiere un golpe inesperado."
+    }
+  ]
+}
+
+================================================================================
+
+{
+  "nombre":"Dormitorio Principal",
+  "descripcion":"Al entrar, la luz tenue revela una cama desordenada y una ventana entreabierta.",
+  "cuerpo":"Elena Varela yace sobre la alfombra, con una profunda contusión en la cabeza y manchas de sangre alrededor.",
+  "objetos":[
+    {
+      "nombre":"Candelabro",
+      "descripcion":"Candelabro de bronce, con cera derretida y una pequeña grieta que sugiere un uso reciente."
+    },
+    {
+      "nombre":"Martillo",
+      "descripcion":"Martillo de madera, apoyado contra la pared, con el mango manchado de polvo y una ligera huella de sangre en la cabeza."
+    }
+  ]
+}
+
+================================================================================
+
+{
+  "nombre": "Habitacion Oculta",
+  "descripcion": "Una habitación pequeña, con paredes de piedra y una luz tenue que se filtra por una rendija.",
+  "cuerpo": null,
+  "objetos": [
+    {
+      "nombre": "Pistola",
+      "descripcion": "Arma de fuego sobre una mesa, con una mancha de aceite y una hoja de papel arrugada que menciona una herramienta pesada."
+    }
+  ]
+}
+
+================================================================================
+
+{
+  "nombre": "Habitacion de Invitados",
+  "descripcion": "Sala de invitados con sofá y mesa de café.",
+  "cuerpo": null,
+  "objetos": [
+    {
+      "nombre": "Bate de Beisbol",
+      "descripcion": "Descansado en la esquina, polvo en el mango."
+    },
+    {
+      "nombre": "Veneno",
+      "descripcion": "Frasco pequeño, etiqueta borrada, olor tenue."
+    }
+  ]
+}
+
+================================================================================
+
+{
+  "nombre": "Jardin",
+  "descripcion": "Jardín con senderos de piedra, flores silvestres y una fuente apagada.",
+  "cuerpo": null,
+  "objetos": [
+    {
+      "nombre": "Abrecartas",
+      "descripcion": "Abrecartas de acero, ligeramente oxidado, apoyado contra el seto."
+    },
+    {
+      "nombre": "Manguera",
+      "descripcion": "Manguera enrollada, con restos de agua fresca y tierra adherida."
+    }
+  ]
+}
+
+================================================================================
+
+{
+  "nombre":"Piscina",
+  "descripcion":"Una zona al aire libre con agua cristalina y mosaicos resbaladizos, rodeada de palmeras y luces tenues.",
+  "cuerpo":null,
+  "objetos":[
+    {
+      "nombre":"Trofeo",
+      "descripcion":"Trofeo de bronce con una ligera mancha rojiza en la base y polvo que indica movimiento reciente."
+    }
+  ]
+}
+
+================================================================================
+
+{
+  "nombre": "Salon",
+  "descripcion": "Al entrar, el salón muestra una luz tenue y un aroma a madera pulida; los muebles están ordenados pero una silla está ligeramente desplazada.",
+  "cuerpo": null,
+  "objetos": [
+    {
+      "nombre": "Cuchillo",
+      "descripcion": "Una hoja de acero con una pequeña mancha oscura en el mango, como si hubiera estado en contacto con algo reciente."
+    },
+    {
+      "nombre": "Maceta",
+      "descripcion": "Una maceta de cerámica rota, con tierra esparcida y una marca profunda en el borde, sugeriendo que fue golpeada con fuerza."
+    }
+  ]
+}
+
+================================================================================
+
+{
+  "nombre": "Elias Vann",
+  "primera_impresion": "Un mayordomo de porte rígido y mirada atenta, habla con formalidad y precisión, reflejando su lealtad a la casa y su resentimiento contenido.",
+  "respuestas": {
+    "Conoce a alguien que quisiera hacer dano a la victima?": "Sí, he observado que el señor Fernando mostraba una animosidad latente hacia la señora Varela, aunque nunca lo expresara abiertamente. Su porte frío y su frecuente presencia en el dormitorio principal me hacen sospechar.",
+    "Hay algo que no me este contando?": "Hay ciertos asuntos familiares que prefiero no revelar, pues podrían alter la percepción del caso. Sin embargo, todo lo que sé sobre la noche del crimen está bajo mi custodia.",
+    "Donde estaba cada persona despues de la cena?": "Después de la cena, el señor Fernando se retiró al dormitorio principal, mientras yo permanecí en la misma habitación. La señora Caterina volvió a la cocina, la señorita Isabella se dirigió al jardín, el señor Blanco Crema se quedó en la biblioteca, la marquesa Isolda tomó la piscina y Will se retiró a la habitación de invitados.",
+    "Quien cree que pudo haber cometido este crimen?": "Mi leal observación indica que el señor Fernando fue el único con acceso al martillo en el dormitorio principal. No dudo que él sea el autor del trágico suceso."
+  }
+}
+
+================================================================================
+
+{
+  "nombre": "Caterina",
+  "primera_impresion": "Una mujer de luto elegante, con mirada triste pero segura, que oculta su dolor tras una digna compostura.",
+  "respuestas": {
+    "La victima tenia enemigos? De que tipo?": "Sí, Elena tenía algunos detractores en el círculo social, principalmente por su ambición y su capacidad para influir en los negocios familiares. No parecía haber enemistades abiertas, pero los celos y la rivalidad eran palpables.",
+    "Vio u oyo algo sospechoso cerca de la hora del crimen?": "Escuché un golpe fuerte proveniente del Dormitorio Principal justo antes de la medianoche, pero no vi a nadie. El sonido del martillo resonó brevemente, lo que me pareció extraño.",
+    "Donde estaba usted la noche del crimen?": "Yo permanecí en la cocina, preparando la cena para los invitados. No salí de allí hasta después de que se descubriera el cuerpo.",
+    "Que opina de los otros invitados esta noche?": "Los invitados parecen tensos; Don Fernando mostraba una actitud distante, mientras que Elias Vann estaba demasiado ansioso. En general, la atmósfera es de incertidumbre."
+  }
+}
+
+================================================================================
+
+{
+  "nombre": "Isabella",
+  "primera_impresion": "Una joven impetuosa y rebelde, mirada inquisitiva y una sonrisa que oculta su astucia.",
+  "respuestas": {
+    "Noto algo extrano ultimamente en la mansion?": "He percibido sus susurros entre los sirvientes y luces que parpadean en el pasillo. El jardín se siente más frío y vi una sombra pasar cerca de la biblioteca.",
+    "Como describiria su relacion con la victima?": "Elena era la dama de la casa, siempre amable pero distante. No éramos muy cercanas, pero la respetaba y a veces la veía en los jardines.",
+    "Que cree que ocurrio realmente esta noche?": "Creo que alguien aprovechó la ausencia de Don Fernando para atacar, y el uso de un martillo sugiere una pelea en el dormitorio principal. El caos parece haber sido improvisado, no un plan meticuloso.",
+    "Ha notado algun comportamiento extrano en alguien esta noche?": "Don Fernando estaba más nervioso de lo habitual y Elias Vann pasó mucho tiempo en el dormitorio principal. Además, la cocina estaba desordenada, como si alguien buscara algo en la prisa."
+  }
+}
+
+================================================================================
+
+{
+  "nombre": "Blanco Crema",
+  "primera_impresion": "Un hombre de unos 40 años, traje elegante pero ligeramente arrugado, mirada cansada y sonrisa cordial que oculta una ligera tensión.",
+  "respuestas": {
+    "Conoce a alguien que quisiera hacer dano a la victima?": "No conozco a nadie que haya expresado abiertamente odio hacia Elena, aunque escuché que Don Fernando había tenido disputas comerciales con ella.",
+    "Conoce el paradero exacto de la victima antes de su muerte?": "La última vez que la vi fue en el Dormitorio Principal, donde parecía revisar unos papeles antes de retirarse a su habitación.",
+    "Que cree que ocurrio realmente esta noche?": "Creo que hubo una discusión acalorada en el Dormitorio Principal y, en el calor del momento, alguien tomó el martillo y le propinó un golpe fatal.",
+    "Donde estaba cada persona despues de la cena?": "Después de la cena, Elias Vann se quedó en el Dormitorio Principal, Caterina volvió a la Cocina y Isabella se dirigió al Jardín. Yo permanecí en la Biblioteca, mientras Don Fernando se quedó en el Salón, La Marquesa Isolda en la Piscina y Will en la Habitación de Invitados."
+  }
+}
+
+================================================================================
+
+{
+  "nombre": "Don Fernando",
+  "primera_impresion": "Un hombre de porte elegante, mirada serena y voz pausada que oculta sus verdaderas intenciones.",
+  "respuestas": {
+    "Que opina de los otros invitados esta noche?": "Los demás invitados se comportan con la cortesía propia de la noche, cada uno parece mantener una conversación discreta. No percibo ninguna tensión que sobresalga.",
+    "Ha notado algun comportamiento extrano en alguien esta noche?": "He observado a algunos moverse con cierta prisa, pero no hay nada que me llame la atención de manera significativa.",
+    "Vio u oyo algo sospechoso cerca de la hora del crimen?": "No escuché nada fuera de lo común; la única señal que percibí fue el crujido de la puerta al abrirse. No vi a nadie cerca del dormitorio en ese momento.",
+    "La victima tenia enemigos? De que tipo?": "Elena Varela era una mujer respetada, aunque en los negocios siempre aparecen rivales. Es posible que algunos la consideraran una amenaza, pero no creo que haya enemigos personales graves."
+  }
+}
+
+================================================================================
+
+{
+  "nombre": "La Marquesa Isolda",
+  "primera_impresion": "Mujer de porte majestuoso, voz profunda y mirada inquisitiva, sin filtro.",
+  "respuestas": {
+    "Noto algo extrano ultimamente en la mansion?": "He visto que los sirvientes susurran en los pasillos y que la luz del salón parpadea al anochecer; algo no encaja en la tranquilidad de la mansión. Los ecos de pasos nocturnos me recuerdan que algo se oculta tras la fachada.",
+    "Quien cree que pudo haber cometido este crimen?": "Creo que Don Fernando, con su arrogancia y su cercanía a la víctima, es el culpable; su mirada fría lo deluyó. El martillo encontrado en el dormitorio principal confirma mi sospecha.",
+    "Sabia usted de la existencia de alguna habitacion oculta en la mansion?": "No, nunca he oído hablar de una habitación oculta; la mansión es extensa, pero todo está a la vista. Si existiera, lo habría descubierto en mis recorridos.",
+    "Como describiria su relacion con la victima?": "Mi relación con Elena Varela era de amistad de la infancia; compartimos confidencias y celebraciones, aunque siempre mantuve cierta distancia por nuestras diferencias de clase. Aún guardo el recuerdo de sus risas en los jardines."
+  }
+}
+
+================================================================================
+
+{
+  "nombre": "Will",
+  "primera_impresion": "Un joven de 28 años, con sonrisa fácil pero ojos ansiosos, siempre con su cámara al hombro.",
+  "respuestas": {
+    "Hay algo que no me este contando?": "Sí, escuché una discusión acalorada, pero prefiero no decir quién la protagonizó. Me preocupa que mi curiosidad pueda complicar las cosas.",
+    "Donde estaba cada persona despues de la cena?": "Elias Vann regresó al Dormitorio Principal, Caterina se quedó en la Cocina, Isabella paseó por el Jardín, Blanco Crema volvió a la Biblioteca, Don Fernando se quedó en el Salón, La Marquesa Isolda se dirigió a la Piscina y yo permanecí en la Habitación de Invitados.",
+    "Quien cree que pudo haber cometido este crimen?": "Tengo la sospecha de que Don Fernando podría estar implicado, aunque no tengo pruebas concretas. La tensión que percibí esa noche me hace dudar.",
+    "Conoce el paradero exacto de la victima antes de su muerte?": "Vi a Elena Varela en el Dormitorio Principal justo antes de que comenzara la noche. Después la vi salir, pero no sé qué ocurrió después."
+  }
+}
+
+================================================================================
+
+[
+  {
+    "nombre": "Pistola",
+    "texto_inspeccion": "El arma de fuego está cargada con una sola bala de calibre .38. El polvo de pólvora se ha adherido al cañón, indicando un disparo reciente."
+  },
+  {
+    "nombre": "Trofeo",
+    "texto_inspeccion": "El trofeo de cristal está manchado de sangre seca. Un pequeño rasguño en la base sugiere que fue usado como arma improvisada."
+  },
+  {
+    "nombre": "Maceta",
+    "texto_inspeccion": "La maceta de terracota muestra una grieta profunda y restos de tierra. En la zona del golpe hay una pequeña hoja de metal incrustada."
+  },
+  {
+    "nombre": "Cizalla",
+    "texto_inspeccion": "La cizalla de acero tiene una hoja ligeramente doblada y manchas de sangre. Un trozo de tela de color rojo está atrapado en la bisagra."
+  },
+  {
+    "nombre": "Manguera",
+    "texto_inspeccion": "La manguera de jardín está húmeda y tiene manchas de sangre fresca. Un nudo extraño en el extremo indica que fue manipulada con intención."
+  },
+  {
+    "nombre": "Almohada",
+    "texto_inspeccion": "La almohada de algodón está manchada de sangre y tiene una marca de presión profunda. Un perfume suave de lavanda se percibe en el tejido."
+  },
+  {
+    "nombre": "Cuchillo",
+    "texto_inspeccion": "El cuchillo de cocina tiene una hoja afilada con manchas de sangre y una pequeña huella digital. El mango está cubierto de grasa."
+  },
+  {
+    "nombre": "Abrecartas",
+    "texto_inspeccion": "El abrebotellas de metal está oxidado y tiene una pequeña marca de arañazo en la base. Un trozo de papel con una palabra escrita está pegado al mango."
+  },
+  {
+    "nombre": "Candelabro",
+    "texto_inspeccion": "El candelabro de bronce tiene una vela derramada y una mancha de sangre en el candelabro. Un anillo de oro está colgado del cuello del candelabro."
+  },
+  {
+    "nombre": "Bate de Beisbol",
+    "texto_inspeccion": "El bate de béisbol está cubierto de polvo y tiene una zona de impacto con sangre fresca. Un número de serie parcialmente borrado está grabado en el mango."
+  },
+  {
+    "nombre": "Puno Americano",
+    "texto_inspeccion": "El puño americano de acero muestra una superficie pulida y una pequeña muesca de metal. Un sello de una marca de gimnasio está grabado en el interior."
+  },
+  {
+    "nombre": "Veneno",
+    "texto_inspeccion": "El frasco de veneno está etiquetado y contiene un líquido verde brillante. Un rastro de polvo blanco se ha depositado en la tapa."
+  },
+  {
+    "nombre": "Martillo",
+    "texto_inspeccion": "El martillo de hierro tiene una cabeza ennegrecida por sangre y una fractura de madera en la víctima. Las huellas de polvo de cemento en el mango indican que se usó en el dormitorio principal."
+  }
+]
+
+================================================================================
+
+{"correcto":"Cuando TODOS los elementos son correctos: asesino, complice, arma y lugar. El detective resuelve el caso. Final triunfal.","asesino_incorrecto":"Cuando el ASESINO elegido es incorrecto. La persona acusada tiene coartada sólida. El silencio de los testigos lo protege.","arma_incorrecta":"Cuando el ARMA elegida es incorrecta. La evidencia forense no coincide. El rastro de sangre indica otro objeto.","lugar_incorrecto":"Cuando el LUGAR elegido es incorrecto. Las pruebas físicas contradicen la teoría. El eco del salón revela la verdad oculta.","complice_incorrecto":"Cuando el COMPLICE elegido es incorrecto. La persona muestra desconcierto genuino. Sus ojos evitan la culpa.","todo_incorrecto":"Cuando TODO es incorrecto. Fracaso total. El asesino queda libre. La sombra de la justicia se desvanece."}

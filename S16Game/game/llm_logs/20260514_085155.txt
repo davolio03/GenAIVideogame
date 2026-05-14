@@ -1,0 +1,12 @@
+=== DATOS DEL CASO ===
+victima: Blanco Crema
+asesino: Will
+arma: Letter Opener
+escena: Habitacion de Invitados
+complice: Don Fernando
+
+=== RESPUESTA PRINCIPAL ===
+Generado en segundo plano durante la sesion anterior
+
+=== RAZONAMIENTO ===
+Camino privado para deducir asesino, arma y habitacion.

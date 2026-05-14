@@ -1,0 +1,110 @@
+import json
+import os
+import time
+
+try:
+    # Python 3 (Ren'Py 8)
+    from urllib.request import Request, urlopen
+    from urllib.error import URLError, HTTPError
+except ImportError:
+    # Python 2 (Ren'Py 7)
+    from urllib2 import Request, urlopen, URLError, HTTPError
+
+# Config defaults — overridden by .env if present
+API_KEY = ""
+API_URL = "https://api.inceptionlabs.ai/v1/chat/completions"
+MODEL = "mercury-2"
+MAX_TOKENS = 8192
+TIMEOUT = 120
+
+
+def _load_env():
+    """Load configuration from .env file in project root."""
+    global API_KEY, API_URL, MODEL, MAX_TOKENS, TIMEOUT
+    try:
+        env_path = os.path.join(renpy.config.gamedir, "..", ".env")
+        env_path = os.path.normpath(env_path)
+        with open(env_path, "r") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("#"):
+                    continue
+                if "=" in line:
+                    key, _, value = line.partition("=")
+                    key = key.strip()
+                    value = value.strip()
+                    if key == "MERCURY_API_KEY":
+                        API_KEY = value
+                    elif key == "MERCURY_API_URL":
+                        API_URL = value
+                    elif key == "MERCURY_MODEL":
+                        MODEL = value
+    except Exception:
+        pass
+
+
+def call_llm(system_prompt, user_prompt, max_tokens=None, temperature=None):
+    """Call the LLM API and return the response text.
+
+    Returns the response string on success, or None on failure.
+    """
+    if max_tokens is None:
+        max_tokens = MAX_TOKENS
+
+    payload = {
+        "model": MODEL,
+        "messages": [
+            {"role": "user", "content": user_prompt},
+        ],
+        "max_tokens": max_tokens,
+    }
+    if system_prompt:
+        payload["messages"].insert(0, {"role": "system", "content": system_prompt})
+    if temperature is not None:
+        payload["temperature"] = temperature
+
+    data = json.dumps(payload).encode("utf-8")
+
+    for attempt in range(3):
+        try:
+            req = Request(API_URL, data=data)
+            req.add_header("Content-Type", "application/json")
+            req.add_header("Authorization", "Bearer " + API_KEY)
+            req.add_header("User-Agent", "S16Game-RenPy/1.0")
+
+            resp = urlopen(req, timeout=TIMEOUT)
+            body = resp.read().decode("utf-8")
+            result = json.loads(body)
+
+            if "choices" in result and len(result["choices"]) > 0:
+                msg = result["choices"][0].get("message", {})
+                content = msg.get("content", "")
+                if content:
+                    return content
+                # Some reasoning models may return empty content occasionally
+                if "reasoning_summary" in result:
+                    continue
+
+            # API returned unexpected format — retry
+            time.sleep(1)
+
+        except HTTPError as e:
+            if 400 <= e.code < 500:
+                # Client error — don't retry
+                try:
+                    err_body = e.read().decode("utf-8")
+                except Exception:
+                    err_body = ""
+                renpy.log("LLM API client error {}: {}".format(e.code, err_body))
+                return None
+            # Server error — retry
+            time.sleep(2 * (attempt + 1))
+
+        except (URLError, Exception) as e:
+            if attempt < 2:
+                time.sleep(2 * (attempt + 1))
+            else:
+                renpy.log("LLM API call failed: {}".format(str(e)))
+                return None
+
+    return None

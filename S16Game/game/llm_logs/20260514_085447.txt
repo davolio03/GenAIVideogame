@@ -1,0 +1,12 @@
+=== DATOS DEL CASO ===
+victima: Will
+asesino: Don Fernando
+arma: Pistol
+escena: Salon
+complice: Elena Varela
+
+=== RESPUESTA PRINCIPAL ===
+Generado en segundo plano durante la sesion anterior
+
+=== RAZONAMIENTO ===
+Analiza la posición de cada personaje y arma, cruza testimonios y objetos encontrados para deducir quién es el asesino, qué arma utilizó y en qué habitación ocurrió el hecho.

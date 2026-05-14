@@ -1,0 +1,12 @@
+=== DATOS DEL CASO ===
+victima: Don Fernando
+asesino: Caterina
+arma: Letter Opener
+escena: Piscina
+complice: La Marquesa Isolda
+
+=== RESPUESTA PRINCIPAL ===
+Generado en segundo plano durante la sesion anterior
+
+=== RAZONAMIENTO ===
+Sigue la pista de los objetos fuera de lugar, compara las ubicaciones de los personajes con las armas encontradas y busca inconsistencias que revelen al asesino, el arma y la habitación del crimen.

@@ -1,0 +1,12 @@
+=== DATOS DEL CASO ===
+victima: Isabella
+asesino: Elias Vann
+arma: Knife
+escena: Salon
+complice: Blanco Crema
+
+=== RESPUESTA PRINCIPAL ===
+Generado en segundo plano durante la sesion anterior
+
+=== RAZONAMIENTO ===
+Analiza la ubicación de cada personaje y arma, cruza coincidencias y contradicciones, y sigue la cadena lógica que lleva al asesino, su cómplice y el objeto homicida en el salón.

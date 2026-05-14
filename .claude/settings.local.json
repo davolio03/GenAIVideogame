@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(curl -s --max-time 15 \"https://api.mercury.com/v1/models\" -H \"Authorization: Bearer sk_07b317c9d90ce2d664fb570b9cdd9317\")",
+      "WebSearch",
+      "Bash(curl *)",
+      "Bash(wc *)",
+      "Bash(pip install *)"
+    ]
+  }
+}
