@@ -5,8 +5,9 @@ define audio.bgm3 = "audio/La_Mansion_Cerrada_2.mp3"
 
 init python:
     def play_random_bgm():
+        import random as _random_bgm
         tracks = ["audio/Clave_de_Humo.mp3", "audio/La_Mansion_Cerrada_1.mp3", "audio/La_Mansion_Cerrada_2.mp3"]
-        renpy.music.play(renpy.random.choice(tracks))
+        renpy.music.play(_random_bgm.choice(tracks))
 
 # Character definitions
 define detective = Character("Detective", color="#c8c8ff")
@@ -267,15 +268,16 @@ label start:
                 store.npc_portrait_map[_nid] = _nportrait
 
             # Weapon placements (random local UI positions)
+            import random as _random_place
             _all_slots = []
             for _wloc, _positions in WEAPON_SLOTS.items():
                 for _pos in _positions:
                     _all_slots.append((_wloc, _pos[0], _pos[1]))
-            renpy.random.shuffle(_all_slots)
+            _random_place.shuffle(_all_slots)
             _selected = _all_slots[:13]
 
             _wtype_indices = list(range(len(WEAPON_DATA)))
-            renpy.random.shuffle(_wtype_indices)
+            _random_place.shuffle(_wtype_indices)
 
             store.weapon_placements = {}
             store.weapon_type = {}
@@ -309,58 +311,96 @@ label start:
 
         else:
             # ═══════════════════════════════════════════════════════════════
-            # Fallback mode: randomize locally + static content
+            # Fallback mode: use randomizador.py for all randomization
             # ═══════════════════════════════════════════════════════════════
-            npc_pool = list(NPC_DATA)
-            renpy.random.shuffle(npc_pool)
+            import random as _random
+            from randomizador import (
+                seleccionar_misterio,
+                PERSONAJE_A_ID,
+                ESTANCIA_A_ID,
+                ARMA_A_INTERNO,
+                PERSONAJES,
+                ARMAS,
+                ESTANCIAS,
+                cargar_preguntas,
+            )
 
-            victim_id_data, victim_name_data, _vic_portrait = npc_pool[0]
-            store.victim_id = victim_id_data
-            store.victim_name = victim_name_data
-            alive = npc_pool[1:]
+            _misterio = seleccionar_misterio(PERSONAJES, ARMAS, ESTANCIAS, cargar_preguntas())
 
-            for nid, nname, nportrait in NPC_DATA:
-                npc_portrait_map[nid] = nportrait
+            # Victim
+            store.victim_id = PERSONAJE_A_ID.get(_misterio["muerto"], "")
+            store.victim_name = _misterio["muerto"]
 
-            locs = list(LOCATIONS_FOR_NPC)
-            renpy.random.shuffle(locs)
+            # Murderer
+            store.murderer_id = PERSONAJE_A_ID.get(_misterio["asesino"], "")
+            store.murderer_name = _misterio["asesino"]
 
-            npc_location = {}
-            for i, (nid, nname, nportrait) in enumerate(alive):
-                npc_location[nid] = locs[i]
+            # Accomplice
+            store.accomplice_id = PERSONAJE_A_ID.get(_misterio["complice"], "")
+            store.accomplice_name = _misterio["complice"]
 
-            murderer_idx = renpy.random.randint(0, len(alive) - 1)
-            store.murderer_id = alive[murderer_idx][0]
-            store.murderer_name = alive[murderer_idx][1]
+            # NPC locations
+            store.npc_location = {}
+            for _nombre_es, _hab_es in _misterio["ubicaciones_personajes"].items():
+                _nid = PERSONAJE_A_ID.get(_nombre_es)
+                _loc = ESTANCIA_A_ID.get(_hab_es)
+                if _nid and _loc:
+                    store.npc_location[_nid] = _loc
 
-            remaining_for_accomplice = [n for n in alive if n[0] != store.murderer_id]
-            acc_idx = renpy.random.randint(0, len(remaining_for_accomplice) - 1)
-            store.accomplice_id = remaining_for_accomplice[acc_idx][0]
-            store.accomplice_name = remaining_for_accomplice[acc_idx][1]
+            # Crime scene
+            store.crime_scene_id = ESTANCIA_A_ID.get(_misterio["habitacion"], "")
+            store.crime_scene_name = _misterio["habitacion"]
 
-            store.weapon_id = renpy.random.randint(0, len(WEAPON_DATA) - 1)
-            store.weapon_name_str = WEAPON_DATA[store.weapon_id][0]
+            # Murder weapon — match via ARMA_A_INTERNO -> WEAPON_DATA
+            _arma_interno = ARMA_A_INTERNO.get(_misterio["arma"], "")
+            store.weapon_id = 0
+            store.weapon_name_str = _arma_interno
+            for _i, (_wname, _wimg) in enumerate(WEAPON_DATA):
+                if _wname == _arma_interno:
+                    store.weapon_id = _i
+                    store.weapon_name_str = _wname
+                    break
 
-            scene_locs = list(LOCATIONS_FOR_NPC)
-            scene_idx = renpy.random.randint(0, len(scene_locs) - 1)
-            store.crime_scene_id = scene_locs[scene_idx]
-            store.crime_scene_name = locations[scene_locs[scene_idx]]["name"]
+            # NPC portrait map
+            for _nid, _nname, _nportrait in NPC_DATA:
+                store.npc_portrait_map[_nid] = _nportrait
 
-            all_slots = []
-            for wloc, positions in WEAPON_SLOTS.items():
-                for pos in positions:
-                    all_slots.append((wloc, pos[0], pos[1]))
-            renpy.random.shuffle(all_slots)
-            selected = all_slots[:13]
+            # Weapon placements: respect ubicaciones_armas from randomizador
+            _slots_by_loc = {}
+            for _wloc, _positions in WEAPON_SLOTS.items():
+                for _pos in _positions:
+                    if _wloc not in _slots_by_loc:
+                        _slots_by_loc[_wloc] = []
+                    _slots_by_loc[_wloc].append((_wloc, _pos[0], _pos[1]))
 
-            wtype_indices = list(range(len(WEAPON_DATA)))
-            renpy.random.shuffle(wtype_indices)
+            _weapon_placements = {}
+            _weapon_type = {}
+            _used_slots = set()
+            _wpn_num = 1
 
-            weapon_placements = {}
-            weapon_type = {}
-            for i, (wloc, wx, wy) in enumerate(selected):
-                weapon_placements[i + 1] = (wloc, wx, wy)
-                weapon_type[i + 1] = wtype_indices[i]
+            for _arma_nombre, _loc_nombre in _misterio["ubicaciones_armas"].items():
+                _loc_id = ESTANCIA_A_ID.get(_loc_nombre, "")
+                _arma_int = ARMA_A_INTERNO.get(_arma_nombre, "")
+                _wtype_idx = 0
+                for _i, (_wname, _wimg) in enumerate(WEAPON_DATA):
+                    if _wname == _arma_int:
+                        _wtype_idx = _i
+                        break
+
+                _room_slots = [s for s in _slots_by_loc.get(_loc_id, []) if s not in _used_slots]
+                if _room_slots:
+                    _slot = _random.choice(_room_slots)
+                else:
+                    _all_unused = [s for slots in _slots_by_loc.values() for s in slots if s not in _used_slots]
+                    _slot = _random.choice(_all_unused) if _all_unused else list(_used_slots)[0]
+
+                _used_slots.add(_slot)
+                _weapon_placements[_wpn_num] = _slot
+                _weapon_type[_wpn_num] = _wtype_idx
+                _wpn_num += 1
+
+            store.weapon_placements = _weapon_placements
+            store.weapon_type = _weapon_type
 
             from llm.fallback import get_fallback_data
             store.llm_data = get_fallback_data(store.victim_name)

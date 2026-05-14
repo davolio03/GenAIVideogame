@@ -1,0 +1,12 @@
+=== DATOS DEL CASO ===
+victima: Will
+asesino: Elena Varela
+arma: Candelabra
+escena: Cocina
+complice: Caterina
+
+=== RESPUESTA PRINCIPAL ===
+Generado en segundo plano durante la sesion anterior
+
+=== RAZONAMIENTO ===
+Sigue el rastro: la Biblioteca contiene el Candelabro, pista clave; la Cocina muestra rastros de sangre y la presencia de Isabella; el Jardín alberga la Manguera y el Veneno, indicando posibles intentos de encubrimiento. Observa quién estaba cerca de cada objeto y quién tiene coartadas débiles para deducir al culpable.

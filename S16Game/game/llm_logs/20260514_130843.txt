@@ -1,0 +1,12 @@
+=== DATOS DEL CASO ===
+victima: Isabella
+asesino: Don Fernando
+arma: Pistol
+escena: Habitacion de Invitados
+complice: Caterina
+
+=== RESPUESTA PRINCIPAL ===
+Generado en segundo plano durante la sesion anterior
+
+=== RAZONAMIENTO ===
+Sigue las pistas entre habitaciones, personajes y objetos para descubrir al asesino, el arma y el lugar del crimen.

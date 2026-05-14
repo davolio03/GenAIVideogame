@@ -1,0 +1,12 @@
+=== DATOS DEL CASO ===
+victima: Elias Vann
+asesino: La Marquesa Isolda
+arma: Trophy
+escena: Salon
+complice: Will
+
+=== RESPUESTA PRINCIPAL ===
+Generado en segundo plano durante la sesion anterior
+
+=== RAZONAMIENTO ===
+Camino privado para deducir asesino, arma y habitacion.

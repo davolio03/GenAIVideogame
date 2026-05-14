@@ -1,0 +1,12 @@
+=== DATOS DEL CASO ===
+victima: Elena Varela
+asesino: Don Fernando
+arma: Hammer
+escena: Dormitorio Principal
+complice: Elias Vann
+
+=== RESPUESTA PRINCIPAL ===
+Generado en segundo plano durante la sesion anterior
+
+=== RAZONAMIENTO ===
+Camino privado para deducir asesino, arma y habitacion.
